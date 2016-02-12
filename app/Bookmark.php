@@ -19,6 +19,6 @@ class Bookmark extends Model
      */
     public function bookmarkTags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag')->withTimestamps();;
     }
 }

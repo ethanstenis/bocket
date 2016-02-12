@@ -19,6 +19,6 @@ class Tag extends Model
      */
     public function tagBookmarks()
     {
-        return $this->belongsToMany('App\Bookmark');
+        return $this->belongsToMany('App\Bookmark')->withTimestamps();;
     }
 }
