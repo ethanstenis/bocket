@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('tags', 'TagsController');
+Route::resource('users', 'UsersController');
+Route::resource('bookmarks', 'BookmarksController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,4 +32,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
