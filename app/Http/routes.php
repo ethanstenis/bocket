@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('tags', 'TagsController');
-Route::resource('users', 'UsersController');
-Route::resource('bookmarks', 'BookmarksController');
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +23,18 @@ Route::resource('bookmarks', 'BookmarksController');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
 
 Route::group(['middleware' => 'web'], function () {
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+	Route::resource('tags', 'TagsController');
+	Route::resource('users', 'UsersController');
+	Route::resource('bookmarks', 'BookmarksController');
+
 });
