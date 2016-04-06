@@ -10,8 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
+if (env('APP_DEBUG')) {
+    // Route to view logs. Only for use in development
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+}
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,16 +31,21 @@
 
 
 Route::group(['middleware' => 'web'], function () {
-	Route::get('/', function () {
-	    return view('welcome');
-	});
 
     Route::auth();
-
+    // This is where our app lives.
     Route::get('/home', 'HomeController@index');
 
-	Route::resource('tags', 'TagsController');
-	Route::resource('users', 'UsersController');
-	Route::resource('bookmarks', 'BookmarksController');
+  Route::group(['prefix' => 'api'], function() {
 
+    	Route::resource('tags', 'TagsController', ['only' => ['index', 'show']])
+    	Route::resource('users', 'UsersController', ['except' => ['create', 'edit']]);
+    	Route::resource('bookmarks', 'BookmarksController', ['only' => ['index', 'show']]);
+
+    Route::group(['middleware' => 'auth'], function() {
+      Route::resource('bookmarks', 'BookmarksController', [
+             'only' => ['store', 'update', 'destroy']
+      ]);
+    });
+  });
 });
