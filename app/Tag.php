@@ -11,7 +11,7 @@ class Tag extends Model
      */
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('\App\User');
     }
 
     /**
@@ -19,6 +19,6 @@ class Tag extends Model
      */
     public function tagBookmarks()
     {
-        return $this->belongsToMany('App\Bookmark')->withTimestamps();;
+        return $this->belongsToMany('\App\Bookmark')->withTimestamps();;
     }
 }

@@ -11,7 +11,7 @@ class Bookmark extends Model
      */
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('\App\User');
     }
 
     /**
@@ -19,6 +19,6 @@ class Bookmark extends Model
      */
     public function bookmarkTags()
     {
-        return $this->belongsToMany('App\Tag')->withTimestamps();;
+        return $this->belongsToMany('\App\Tag')->withTimestamps();;
     }
 }

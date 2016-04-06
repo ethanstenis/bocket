@@ -29,7 +29,7 @@ class User extends Authenticatable
      */
     public function bookmarks()
     {
-        return $this->hasMany('App\Bookmark');
+        return $this->hasMany('\App\Bookmark');
     }
 
         /**
@@ -37,7 +37,7 @@ class User extends Authenticatable
      */
     public function tags()
     {
-        return $this->hasMany('App\Tag');
+        return $this->hasMany('\App\Tag');
     }
 
 }
